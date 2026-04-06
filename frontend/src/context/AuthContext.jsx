@@ -45,6 +45,9 @@ export const AuthProvider = ({ children }) => {
         try {
             const data = await authAPI.login(email, password);
             setUser(data.user);
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('accessToken', data.accessToken);
+            localStorage.setItem('refreshToken', data.refreshToken);
             return data; 
         } catch (error) {
             setError(error.response?.data?.error || 'Ошибка входа');
@@ -55,6 +58,9 @@ export const AuthProvider = ({ children }) => {
     const logout = async() => {
         await authAPI.logout();
         setUser(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
     };
 
     const value = {

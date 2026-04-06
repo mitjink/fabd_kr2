@@ -4,6 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { productsAPI } from '../api/products';
 import GoodsList from '../components/GoodsList';
 import GoodModal from '../components/GoodsModal';
+import ProductDetailModal from '../components/ProductDetailModal';
+import ProfileModal from '../components/ProfileModal';
+import { authAPI } from '../api/auth';
 import './GoodsPage.scss';
 
 export default function GoodsPage() {
@@ -12,6 +15,10 @@ export default function GoodsPage() {
     const [modalOpen, setModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState('create');
     const [editingProduct, setEditingProduct] = useState(null);
+    const [detailModalOpen, setDetailModalOpen] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState(null);
+    const [profileModalOpen, setProfileModalOpen] = useState(false);
+    const [userData, setUserData] = useState(null);
     
     const { user, logout } = useAuth();
     const navigate = useNavigate();
@@ -20,8 +27,10 @@ export default function GoodsPage() {
     const isAdmin = user?.role === 'admin';
     
     useEffect(() => {
-        loadProducts();
-    }, []);
+        if (user) {
+            loadProducts();
+        }
+    }, [user]);
     
     const loadProducts = async () => {
         try {
@@ -41,6 +50,11 @@ export default function GoodsPage() {
         }
     };
     
+    const openDetailModal = (product) => {
+        setSelectedProductId(product.id);
+        setDetailModalOpen(true);
+    };
+    
     const openCreateModal = () => {
         setModalMode('create');
         setEditingProduct(null);
@@ -51,6 +65,17 @@ export default function GoodsPage() {
         setModalMode('edit');
         setEditingProduct(product);
         setModalOpen(true);
+        setDetailModalOpen(false);
+    };
+
+    const openProfileModal = async () => {
+        try {
+            const data = await authAPI.meInfo();
+            setUserData(data);
+            setProfileModalOpen(true);
+        } catch (error) {
+            console.error('Ошибка загрузки профиля:', error);
+        }
     };
     
     const closeModal = () => {
@@ -106,6 +131,7 @@ export default function GoodsPage() {
                                 </span>
                                 <span className="user-role">({user?.role})</span>
                             </div>
+                            <button className="btn btn--profile" onClick={openProfileModal}>Мой профиль</button>
                             <button className="btn btn--logout" onClick={handleLogout}>
                                 Выйти
                             </button>
@@ -145,6 +171,7 @@ export default function GoodsPage() {
                             goods={products}
                             onEdit={openEditModal}
                             onDelete={handleDelete}
+                            onView={openDetailModal}
                             isSeller={isSeller}
                             isAdmin={isAdmin}
                         />
@@ -166,6 +193,22 @@ export default function GoodsPage() {
                 initialGood={editingProduct}
                 onClose={closeModal}
                 onSubmit={handleSubmit}
+            />
+            
+            <ProductDetailModal
+                isOpen={detailModalOpen}
+                onClose={() => setDetailModalOpen(false)}
+                productId={selectedProductId}
+                onEdit={openEditModal}
+                onDelete={handleDelete}
+                isSeller={isSeller}
+                isAdmin={isAdmin}
+            />
+
+            <ProfileModal
+                isOpen={profileModalOpen}
+                onClose={() => setProfileModalOpen(false)}
+                userData={userData}
             />
         </div>
     );

@@ -1,0 +1,225 @@
+$bg-primary: #2a2226;
+$bg-secondary: #3e2f36;
+$text-primary: #f7e3e9;
+$text-secondary: #d4b1bc;
+$primary: #e5a1b4;
+$primary-hover: #efb7c7;
+$danger: #d46b7a;
+$border-radius: 12px;
+$spacing: 16px;
+
+.product-detail-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: $spacing;
+}
+
+.product-detail-modal {
+    background: $bg-secondary;
+    border-radius: $border-radius;
+    width: 100%;
+    max-width: 450px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.product-detail-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.product-detail-modal::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.product-detail-modal::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: 3px;
+}
+
+.modal-header {
+    padding: $spacing;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: $bg-secondary;
+    z-index: 1;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: $text-primary;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: $text-primary;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0 8px;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: $danger;
+}
+
+.modal-body {
+    padding: $spacing;
+}
+
+.loading-state, .error-state {
+    text-align: center;
+    padding: $spacing * 2;
+    color: $text-secondary;
+}
+
+.loading-state .spinner-small {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgba($primary, 0.3);
+    border-top-color: $primary;
+    border-radius: 50%;
+    margin: 0 auto $spacing;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.product-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: $spacing;
+}
+
+.image-placeholder {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, $primary 0%, #c77d9a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-info .info-row {
+    margin-bottom: $spacing;
+    padding-bottom: $spacing;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.product-info .info-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.product-info .info-row label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: $text-secondary;
+    margin-bottom: 6px;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-primary;
+}
+
+.product-category {
+    display: inline-block;
+    background: rgba($primary, 0.2);
+    color: $primary;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: $primary;
+}
+
+.product-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: $text-secondary;
+}
+
+.modal-footer {
+    padding: $spacing;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing;
+    position: sticky;
+    bottom: 0;
+    background: $bg-secondary;
+}
+
+.modal-footer button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+
+.modal-footer button:hover {
+    transform: translateY(-1px);
+}
+
+.btn-edit {
+    background: $primary;
+    border: none;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: $primary-hover;
+}
+
+.btn-delete {
+    background: $danger;
+    border: none;
+    color: white;
+}
+
+.btn-delete:hover {
+    opacity: 0.8;
+}
+
+.btn-close {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: $text-primary;
+}
+
+.btn-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+}

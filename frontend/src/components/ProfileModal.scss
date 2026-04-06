@@ -1,0 +1,250 @@
+$bg-primary: #2a2226;
+$bg-secondary: #3e2f36;
+$text-primary: #f7e3e9;
+$text-secondary: #d4b1bc;
+$primary: #e5a1b4;
+$primary-hover: #efb7c7;
+$danger: #d46b7a;
+$success: #10b981;
+$border-radius: 12px;
+$spacing: 16px;
+
+.profile-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: $spacing;
+}
+
+.profile-modal {
+    background: $bg-secondary;
+    border-radius: $border-radius;
+    width: 100%;
+    max-width: 480px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    
+    &-header {
+        padding: $spacing;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: $text-primary;
+        }
+    }
+    
+    &-close {
+        background: transparent;
+        border: none;
+        color: $text-primary;
+        font-size: 28px;
+        cursor: pointer;
+        padding: 0 8px;
+        line-height: 1;
+        
+        &:hover {
+            color: $danger;
+        }
+    }
+    
+    &-body {
+        padding: $spacing * 2;
+    }
+}
+
+.profile-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing * 1.5;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, $primary 0%, #c77d9a 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info {
+    width: 100%;
+    
+    .info-row {
+        display: flex;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        
+        label {
+            width: 130px;
+            font-weight: 600;
+            color: $text-secondary;
+        }
+        
+        span {
+            flex: 1;
+            color: $text-primary;
+        }
+    }
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    
+    &.role-user {
+        background: rgba(16, 185, 129, 0.2);
+        color: $success;
+    }
+    
+    &.role-seller {
+        background: rgba($primary, 0.2);
+        color: $primary;
+    }
+    
+    &.role-admin {
+        background: rgba($danger, 0.2);
+        color: $danger;
+    }
+}
+
+.profile-edit-btn {
+    background: $primary;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &:hover {
+        background: $primary-hover;
+        transform: translateY(-2px);
+    }
+}
+
+.profile-form {
+    .form-group {
+        margin-bottom: $spacing;
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: $text-secondary;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: $text-primary;
+            font-size: 1rem;
+            
+            &:focus {
+                outline: none;
+                border-color: $primary;
+            }
+            
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+        
+        .form-hint {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.75rem;
+            color: $text-secondary;
+        }
+    }
+    
+    .form-message {
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin-bottom: $spacing;
+        font-size: 0.9rem;
+        
+        &.success {
+            background: rgba($success, 0.2);
+            border: 1px solid $success;
+            color: $success;
+        }
+        
+        &.error {
+            background: rgba($danger, 0.2);
+            border: 1px solid $danger;
+            color: $danger;
+        }
+    }
+    
+    .profile-form-actions {
+        display: flex;
+        gap: $spacing;
+        justify-content: flex-end;
+        margin-top: $spacing;
+        
+        .btn-cancel, .btn-save {
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .btn-cancel {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: $text-primary;
+            
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+        
+        .btn-save {
+            background: $success;
+            border: none;
+            color: white;
+            
+            &:hover {
+                opacity: 0.9;
+                transform: translateY(-1px);
+            }
+            
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+                transform: none;
+            }
+        }
+    }
+}

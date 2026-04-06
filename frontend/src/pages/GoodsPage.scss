@@ -452,3 +452,29 @@ $spacing: 16px;
         text-align: center;
     }
 }
+
+.profile-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .user-name {
+        font-weight: 500;
+        color: $primary;
+    }
+    
+    .user-role {
+        color: $text-secondary;
+        font-size: 0.8rem;
+    }
+}

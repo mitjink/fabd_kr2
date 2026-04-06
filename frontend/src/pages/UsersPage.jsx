@@ -142,8 +142,7 @@ export default function UsersPage() {
                                                     <button 
                                                         className="btn btn--danger" 
                                                         onClick={() => handleBlockUser(u.id)}
-                                                    >
-                                                        Заблокировать
+                                                    > {u.isBlocked ? 'Заблокирован' : 'Заблокировать'}
                                                     </button>
                                                 )}
                                             </td>
